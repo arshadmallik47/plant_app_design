@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_app_design/screens/detail_screen1.dart';
 import 'package:plant_app_design/screens/product_detail_screen.dart';
 import 'package:plant_app_design/screens/product_page.dart';
 import 'package:plant_app_design/utils/colors.dart';
@@ -58,7 +59,7 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const DetailScreen(),
+                    builder: (context) => const DetailScreen1(),
                   ),
                 );
               },
@@ -76,7 +77,7 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const DetailScreen(),
+                    builder: (context) => const DetailScreen2(),
                   ),
                 );
               },

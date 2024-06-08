@@ -4,8 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:plant_app_design/utils/colors.dart';
 
-class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
+class ProductDetailScreen extends StatelessWidget {
+  final String name;
+  final String price;
+  final String image;
+  const ProductDetailScreen(
+      {super.key,
+      required this.name,
+      required this.price,
+      required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +21,7 @@ class DetailScreen extends StatelessWidget {
         color: Colors.white,
         child: Stack(
           children: [
+            bottomParts(context),
             // Hero(tag: 'flower1', child: Image.asset("images/flower1.png")),
             Positioned(
               top: 0,
@@ -39,7 +47,9 @@ class DetailScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
                             child: const Icon(
                               Icons.arrow_back,
                               size: 30,
@@ -59,7 +69,7 @@ class DetailScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 32),
                       child: Text(
-                        'House Shape \nClose Plant',
+                        name,
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
@@ -69,7 +79,7 @@ class DetailScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 50,
                     ),
                     Padding(
                       padding: EdgeInsets.only(
@@ -79,7 +89,7 @@ class DetailScreen extends StatelessWidget {
                         children: [
                           // for image
                           Image.asset(
-                            "images/flower1.png",
+                            image,
                             width: MediaQuery.of(context).size.width,
                           ),
                           // for scroll dot
@@ -144,10 +154,10 @@ class DetailScreen extends StatelessWidget {
             ),
             // for price
             Positioned(
-              top: 240,
+              top: 250,
               left: 32,
               child: Text(
-                "\$45",
+                price,
                 style: TextStyle(
                   fontSize: 24,
                 ),
@@ -162,7 +172,120 @@ class DetailScreen extends StatelessWidget {
                 size: 32,
               ),
             ),
+
+            // For add to card
+            Positioned(
+              top: 430,
+              right: 0,
+              child: Container(
+                height: 70,
+                width: 70,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(40),
+                  ),
+                  color: primaryColor,
+                ),
+                child: Icon(
+                  Icons.add_circle,
+                  color: secondaryColor,
+                  size: 50,
+                ),
+              ),
+            ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Positioned bottomParts(BuildContext context) {
+    return Positioned(
+      bottom: 0,
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        color: primaryColor,
+        child: Padding(
+          padding: EdgeInsets.only(top: 790, left: 20, right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: const [
+              // For Height
+              Column(
+                children: [
+                  Text(
+                    'Height',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    '40cm - 50cm',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                width: 25,
+              ),
+              // Fot Pot
+              Column(
+                children: [
+                  Text(
+                    'Pot',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'self watering pot',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+
+              // For temperature
+              Column(
+                children: [
+                  Text(
+                    'Temperature',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    '18C - 25C',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
